@@ -5,10 +5,32 @@ import axios from "axios";
 
 export default function Home() {
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/clone`).then((res) => {
+        // axios.get(`http://localhost:3000/api/clone`).then((res) => {
+        //     console.log(res.data.feedback);
+        // });
+        //return () => add delete route
+    }, []);
+
+    const handleTest = (e) => {
+        e.preventDefault();
+        axios.get(`http://localhost:3000/api/test`).then((res) => {
             console.log(res.data.feedback);
         });
-    }, []);
+    };
+
+    const handleClone = (e) => {
+        e.preventDefault();
+        axios.get(`http://localhost:3000/api/clone`).then((res) => {
+            console.log("cloned successfully");
+        });
+    };
+
+    const handleInstall = (e) => {
+        e.preventDefault();
+        axios.get(`http://localhost:3000/api/install`).then((res) => {
+            console.log("installed successfully");
+        });
+    };
 
     return (
         <div className={styles.container}>
@@ -33,8 +55,10 @@ export default function Home() {
                         News or Games:
                         <input type="text" name="appType" />
                     </label>
-                    <input type="submit" value="Submit" />
                 </form>
+                <button onClick={handleClone}>Clone</button>
+                <button onClick={handleInstall}>Install</button>
+                <button onClick={handleTest}>Test</button>
             </main>
         </div>
     );

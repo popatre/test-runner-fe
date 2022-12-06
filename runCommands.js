@@ -43,8 +43,17 @@ async function main() {
     const { stdout } = await sh(`${cdIntoDir} && ${getMarkdown}`);
 
     const feedbackFile = await readFile(`${working_dir}/feedback.md`, "utf-8");
-    await sh(`rm -r evaluations`);
+    await sh(`rm -r ${working_dir}`);
     return feedbackFile;
 }
 
-module.exports = { runCommands: main, cloneRepo, npmInstall: npmIns };
+async function removeFolder() {
+    await sh(`rm -r ${working_dir}`);
+}
+
+module.exports = {
+    runCommands: main,
+    cloneRepo,
+    npmInstall: npmIns,
+    removeFolder,
+};
