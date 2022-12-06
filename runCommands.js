@@ -27,14 +27,24 @@ const cdIntoDir = `cd ${working_dir}`;
 const npmInstall = `npm install`;
 const getMarkdown = `NODE_ENV=test app_type=${appType} node test-runner.js >> feedback.md`;
 
-async function main() {
+async function cloneRepo() {
+    console.log("cloning repo");
     const { stdout } = await sh(
-        `${gitClone} && ${testRunner} && ${getEnv} && ${setupDbs} && ${cdIntoDir} && ${npmInstall} && ${getMarkdown}`
+        `${gitClone} && ${testRunner} && ${getEnv} && ${setupDbs}`
     );
+}
+
+async function npmIns() {
+    console.log("npm installing");
+    const { stdout } = await sh(`${cdIntoDir} && ${npmInstall}`);
+}
+
+async function main() {
+    const { stdout } = await sh(`${cdIntoDir} && ${getMarkdown}`);
 
     const feedbackFile = await readFile(`${working_dir}/feedback.md`, "utf-8");
     await sh(`rm -r evaluations`);
     return feedbackFile;
 }
 
-module.exports = main;
+module.exports = { runCommands: main, cloneRepo, npmInstall: npmIns };

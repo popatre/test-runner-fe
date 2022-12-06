@@ -5,7 +5,7 @@ import axios from "axios";
 
 export default function Home() {
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/test`).then((res) => {
+        axios.get(`http://localhost:3000/api/clone`).then((res) => {
             console.log(res.data.feedback);
         });
     }, []);
