@@ -10,6 +10,7 @@ function Feedback() {
     const [isLoading, setIsLoading] = useState(true);
     const [loadingText, setLoadingText] = useState("cloning repo...");
     const [feedback, setFeedback] = useState(``);
+    const [isError, setIsError] = useState(false);
 
     useEffect(() => {
         const { name, repo, appType } = request;
@@ -21,12 +22,20 @@ function Feedback() {
                 `http://localhost:3000/api/test?name=${name}&repo=${repo}&type=${appType}`
             )
             .then((res) => {
+                if (res.data.isError) {
+                    setIsError(true);
+                    setIsLoading(false);
+                }
                 setFeedback(res.data.feedback);
                 setIsLoading(false);
             })
             .catch((err) => {
-                console.log("🤐", err);
+                console.log("IN HERE *******", err);
             });
+
+        return () => {
+            axios.get(`http://localhost:3000/api/delete`);
+        };
     }, []);
 
     const runLoadingText = () => {
@@ -53,12 +62,13 @@ function Feedback() {
                 <ReactLoading
                     type={"cubes"}
                     color={"black"}
-                    height={"20%"}
-                    width={"20%"}
+                    height={"10em"}
+                    width={"10em"}
                 />
                 <p>{loadingText}</p>
             </div>
         );
+    if (isError) return <p>Something went wrong...</p>;
     return (
         <div className={styles.container}>
             <ReactMarkdown>{feedback}</ReactMarkdown>

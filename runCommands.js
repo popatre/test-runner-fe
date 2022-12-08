@@ -1,5 +1,6 @@
 const { exec } = require("child_process");
 const { readFile, existsSync } = require("fs/promises");
+const fs = require("fs");
 
 async function sh(cmd) {
     return new Promise(function (resolve, reject) {
@@ -48,10 +49,15 @@ async function runCommands(studentName, repoUrl, appType) {
 //     const { stdout } = await sh(`${cdIntoDir} && ${npmInstall}`);
 // }
 
-// async function removeFolder() {
-//     await sh(`rm -r ${working_dir}`);
-// }
+async function removeFolder() {
+    if (fs.existsSync(`./evaluations`)) {
+        return await sh(`rm -r ./evaluations`);
+    } else {
+        return;
+    }
+}
 
 module.exports = {
     runCommands,
+    removeFolder,
 };

@@ -8,7 +8,6 @@ export default function Home() {
     const { setRequest } = useContext(RequestContext);
     const router = useRouter();
     const [input, setInput] = useState({ name: "", repo: "", appType: "" });
-    const [isDisabled, setIsDisabled] = useState(true);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
