@@ -6,7 +6,7 @@ const { expect } = require("chai");
 const tests = require(testsPath);
 const app = require("./app");
 const runTests = require("../../tester");
-const connection = require("./db/index");
+const connection = require("./db/connection");
 const seed = require("./db/seeds/seed");
 const testData = require("./db/data/test-data");
 

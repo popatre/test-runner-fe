@@ -1,0 +1,18 @@
+.container {
+    width: 80%;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 1100px;
+}
+
+.loading {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.loading p {
+    font-size: 2rem;
+}
