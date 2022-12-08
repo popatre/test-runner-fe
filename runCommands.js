@@ -1,5 +1,5 @@
 const { exec } = require("child_process");
-const { readFile } = require("fs/promises");
+const { readFile, existsSync } = require("fs/promises");
 
 const repoUrl = "https://github.com/popatre/nc_news.git";
 const studentName = "Jonathan";

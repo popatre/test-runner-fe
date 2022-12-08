@@ -1,11 +1,14 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { RequestContext } from "../context/RequestContext";
 
 export default function Home() {
+    const { setRequest } = useContext(RequestContext);
     const router = useRouter();
     const [input, setInput] = useState({ name: "", repo: "", appType: "" });
+    const [isDisabled, setIsDisabled] = useState(true);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -14,8 +17,13 @@ export default function Home() {
         });
     };
 
+    const isFormComplete = () => {
+        return input.name && input.repo && input.appType;
+    };
+
     const handleNav = (e) => {
         e.preventDefault();
+        setRequest(input);
         router.push("/feedback/jonathan");
     };
 
@@ -61,7 +69,11 @@ export default function Home() {
                         </select>
                     </label>
                 </form>
-                <button className={styles.btn} onClick={handleNav}>
+                <button
+                    disabled={!isFormComplete()}
+                    className={styles.btn}
+                    onClick={handleNav}
+                >
                     Get Feedback
                 </button>
             </main>

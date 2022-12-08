@@ -1,19 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import ReactLoading from "react-loading";
 import styles from "../../styles/Name.module.css";
+import { RequestContext } from "../../context/RequestContext";
 
 function Feedback() {
+    const { request } = useContext(RequestContext);
     const [isLoading, setIsLoading] = useState(true);
     const [loadingText, setLoadingText] = useState("cloning repo...");
     const [feedback, setFeedback] = useState(``);
+
     useEffect(() => {
+        console.log(request, "<---");
+        const { name, repo, appType } = request;
+
         runLoadingText();
-        axios.get(`http://localhost:3000/api/test`).then((res) => {
-            setFeedback(res.data.feedback);
-            setIsLoading(false);
-        });
+        axios
+            .get(
+                `http://localhost:3000/api/test?name=${name}&repo=${repo}&type=${appType}`
+            )
+            .then((res) => {
+                setFeedback(res.data.feedback);
+                setIsLoading(false);
+            });
     }, []);
 
     const runLoadingText = () => {
