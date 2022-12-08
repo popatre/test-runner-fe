@@ -27,20 +27,22 @@ const cdIntoDir = `cd ${working_dir}`;
 const npmInstall = `npm install`;
 const getMarkdown = `NODE_ENV=test app_type=${appType} node test-runner.js >> feedback.md`;
 
-async function cloneRepo() {
-    console.log("cloning repo");
-    const { stdout } = await sh(
-        `${gitClone} && ${testRunner} && ${getEnv} && ${setupDbs}`
-    );
-}
+// async function cloneRepo() {
+//     console.log("cloning repo");
+//     const { stdout } = await sh(
+//         `${gitClone} && ${testRunner} && ${getEnv} && ${setupDbs}`
+//     );
+// }
 
-async function npmIns() {
-    console.log("npm installing");
-    const { stdout } = await sh(`${cdIntoDir} && ${npmInstall}`);
-}
+// async function npmIns() {
+//     console.log("npm installing");
+//     const { stdout } = await sh(`${cdIntoDir} && ${npmInstall}`);
+// }
 
 async function main() {
-    const { stdout } = await sh(`${cdIntoDir} && ${getMarkdown}`);
+    const { stdout } = await sh(
+        `${gitClone} && ${testRunner} && ${getEnv} && ${setupDbs} && ${cdIntoDir} &&  ${npmInstall} && ${getMarkdown}`
+    );
 
     const feedbackFile = await readFile(`${working_dir}/feedback.md`, "utf-8");
     await sh(`rm -r ${working_dir}`);
@@ -53,7 +55,4 @@ async function removeFolder() {
 
 module.exports = {
     runCommands: main,
-    cloneRepo,
-    npmInstall: npmIns,
-    removeFolder,
 };

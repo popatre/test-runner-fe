@@ -1,35 +1,13 @@
 import Head from "next/head";
-import { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
-import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function Home() {
-    useEffect(() => {
-        // axios.get(`http://localhost:3000/api/clone`).then((res) => {
-        //     console.log(res.data.feedback);
-        // });
-        //return () => add delete route
-    }, []);
+    const router = useRouter();
 
-    const handleTest = (e) => {
+    const handleNav = (e) => {
         e.preventDefault();
-        axios.get(`http://localhost:3000/api/test`).then((res) => {
-            console.log(res.data.feedback);
-        });
-    };
-
-    const handleClone = (e) => {
-        e.preventDefault();
-        axios.get(`http://localhost:3000/api/clone`).then((res) => {
-            console.log("cloned successfully");
-        });
-    };
-
-    const handleInstall = (e) => {
-        e.preventDefault();
-        axios.get(`http://localhost:3000/api/install`).then((res) => {
-            console.log("installed successfully");
-        });
+        router.push("/feedback/jonathan");
     };
 
     return (
@@ -56,9 +34,7 @@ export default function Home() {
                         <input type="text" name="appType" />
                     </label>
                 </form>
-                <button onClick={handleClone}>Clone</button>
-                <button onClick={handleInstall}>Install</button>
-                <button onClick={handleTest}>Test</button>
+                <button onClick={handleNav}>Get Feedback</button>
             </main>
         </div>
     );
