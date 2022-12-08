@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
-import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import ReactLoading from "react-loading";
 import styles from "../../styles/Name.module.css";
 import { RequestContext } from "../../context/RequestContext";
 import { deleteEvaluationFolder, runTests } from "../../api/apiFunctions";
+import Errors from "../../components/Errors";
 
 function Feedback() {
     const { request } = useContext(RequestContext);
@@ -45,6 +45,7 @@ function Feedback() {
             "Almost done...",
             "still going...",
             "still, still going",
+            "still, still, still going",
         ];
         let i = -1;
         setInterval(() => {
@@ -65,7 +66,8 @@ function Feedback() {
                 <p>{loadingText}</p>
             </div>
         );
-    if (isError) return <p>Something went wrong...</p>;
+
+    if (isError) return <Errors message="Oh no - Something went wrong " />;
     return (
         <div className={styles.container}>
             <ReactMarkdown>{feedback}</ReactMarkdown>

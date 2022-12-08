@@ -8,7 +8,6 @@ export const runTests = (name, repo, type) => {
     return coreApi
         .get("/test", {
             params: { name, repo, type },
-            // cancelToken: source.token,
         })
         .then((res) => {
             return res.data;
