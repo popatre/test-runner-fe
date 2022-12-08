@@ -24,7 +24,7 @@ export default function Home() {
     const handleNav = (e) => {
         e.preventDefault();
         setRequest(input);
-        router.push("/feedback/jonathan");
+        router.push(`/feedback/${input.name}`);
     };
 
     return (
