@@ -27,7 +27,7 @@ function Feedback() {
         setInterval(() => {
             i++;
             setLoadingText(messages[i]);
-        }, 1500);
+        }, 1800);
     };
 
     if (isLoading) return <p>{loadingText}</p>;

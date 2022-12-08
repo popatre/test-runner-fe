@@ -39,8 +39,8 @@ const getMarkdown = `NODE_ENV=test app_type=${appType} node test-runner.js >> fe
 //     const { stdout } = await sh(`${cdIntoDir} && ${npmInstall}`);
 // }
 
-async function main() {
-    const { stdout } = await sh(
+async function runCommands() {
+    await sh(
         `${gitClone} && ${testRunner} && ${getEnv} && ${setupDbs} && ${cdIntoDir} &&  ${npmInstall} && ${getMarkdown}`
     );
 
@@ -54,5 +54,5 @@ async function removeFolder() {
 }
 
 module.exports = {
-    runCommands: main,
+    runCommands,
 };
