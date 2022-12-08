@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import ReactLoading from "react-loading";
 import styles from "../../styles/Name.module.css";
 import { RequestContext } from "../../context/RequestContext";
+import { deleteEvaluationFolder, runTests } from "../../api/apiFunctions";
 
 function Feedback() {
     const { request } = useContext(RequestContext);
@@ -16,17 +17,13 @@ function Feedback() {
         const { name, repo, appType } = request;
 
         runLoadingText();
-
-        axios
-            .get(
-                `http://localhost:3000/api/test?name=${name}&repo=${repo}&type=${appType}`
-            )
+        runTests(name, repo, appType)
             .then((res) => {
-                if (res.data.isError) {
+                if (res.isError) {
                     setIsError(true);
                     setIsLoading(false);
                 }
-                setFeedback(res.data.feedback);
+                setFeedback(res.feedback);
                 setIsLoading(false);
             })
             .catch((err) => {
@@ -34,7 +31,7 @@ function Feedback() {
             });
 
         return () => {
-            axios.get(`http://localhost:3000/api/delete`);
+            deleteEvaluationFolder();
         };
     }, []);
 
