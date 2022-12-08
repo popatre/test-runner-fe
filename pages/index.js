@@ -1,9 +1,20 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function Home() {
     const router = useRouter();
+    const [input, setInput] = useState({ name: "", repo: "", appType: "" });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setInput((prevInput) => {
+            return { ...prevInput, [name]: value };
+        });
+    };
+
+    console.log(input);
 
     const handleNav = (e) => {
         e.preventDefault();
@@ -23,15 +34,33 @@ export default function Home() {
                 <form>
                     <label>
                         Name:
-                        <input type="text" name="name" />
+                        <input
+                            type="text"
+                            name="name"
+                            value={input.name}
+                            onChange={handleChange}
+                        />
                     </label>
                     <label>
                         Github repo link:
-                        <input type="text" name="repo" />
+                        <input
+                            type="text"
+                            value={input.repo}
+                            name="repo"
+                            onChange={handleChange}
+                        />
                     </label>
                     <label>
-                        News or Games:
-                        <input type="text" name="appType" />
+                        App type:
+                        {/* <input type="text" name="appType" /> */}
+                        <select name="appType" onChange={handleChange}>
+                            <option disabled selected value>
+                                {" "}
+                                -- select an app type --{" "}
+                            </option>
+                            <option value="news">NC News</option>
+                            <option value="games">NC Games</option>
+                        </select>
                     </label>
                 </form>
                 <button onClick={handleNav}>Get Feedback</button>

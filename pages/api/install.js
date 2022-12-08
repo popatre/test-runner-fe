@@ -1,9 +1,9 @@
-const { npmInstall } = require("../../runCommands");
+const { npmIns } = require("../../runCommands");
 
-export default async function clone(req, res) {
+export default async function runNpmInstall(req, res) {
     try {
-        const feedback = await npmInstall();
-        res.status(200).send({ msg: "npm installed" });
+        await npmIns();
+        res.status(200).send({ msg: "dependencies installed" });
     } catch (error) {
         console.log(error);
     }
