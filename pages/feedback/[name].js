@@ -12,10 +12,10 @@ function Feedback() {
     const [feedback, setFeedback] = useState(``);
 
     useEffect(() => {
-        console.log(request, "<---");
         const { name, repo, appType } = request;
 
         runLoadingText();
+
         axios
             .get(
                 `http://localhost:3000/api/test?name=${name}&repo=${repo}&type=${appType}`
@@ -23,6 +23,9 @@ function Feedback() {
             .then((res) => {
                 setFeedback(res.data.feedback);
                 setIsLoading(false);
+            })
+            .catch((err) => {
+                console.log("🤐", err);
             });
     }, []);
 
@@ -35,7 +38,7 @@ function Feedback() {
             "still writing the file...",
             "Almost done...",
             "still going...",
-            "blame github",
+            "still, still going",
         ];
         let i = -1;
         setInterval(() => {

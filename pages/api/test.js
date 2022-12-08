@@ -10,5 +10,9 @@ export default async function handler(req, res) {
         res.status(200).send({ feedback });
     } catch (error) {
         console.log(error);
+        res.status(500).send({
+            status: 500,
+            msg: "Delete the evaluations folder and try again",
+        });
     }
 }

@@ -15,9 +15,6 @@ async function sh(cmd) {
 }
 
 async function runCommands(studentName, repoUrl, appType) {
-    // const repoUrl = "https://github.com/popatre/nc_news.git";
-    //const studentName = "Jonathan";
-    //const appType = "news";
     const working_dir = `./evaluations/${studentName}`;
 
     const gitClone = `git clone ${repoUrl} ${working_dir}`;
