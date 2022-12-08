@@ -14,8 +14,6 @@ export default function Home() {
         });
     };
 
-    console.log(input);
-
     const handleNav = (e) => {
         e.preventDefault();
         router.push("/feedback/jonathan");
@@ -31,7 +29,7 @@ export default function Home() {
 
             <main className={styles.main}>
                 <h1 className={styles.title}>BE Project Test Runner</h1>
-                <form>
+                <form className={styles.form}>
                     <label>
                         Name:
                         <input
@@ -63,7 +61,9 @@ export default function Home() {
                         </select>
                     </label>
                 </form>
-                <button onClick={handleNav}>Get Feedback</button>
+                <button className={styles.btn} onClick={handleNav}>
+                    Get Feedback
+                </button>
             </main>
         </div>
     );
