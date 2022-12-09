@@ -28,7 +28,7 @@ function Form() {
         <>
             <form className={styles.form}>
                 <label>
-                    Name:
+                    Name (no spaces):
                     <input
                         type="text"
                         name="name"

@@ -5,6 +5,7 @@ import styles from "../../styles/Name.module.css";
 import { RequestContext } from "../../context/RequestContext";
 import { deleteEvaluationFolder, runTests } from "../../api/apiFunctions";
 import Errors from "../../components/Errors";
+import { runLoadingText } from "../../utils/runLoadingText";
 
 function Feedback() {
     const { request } = useContext(RequestContext);
@@ -16,7 +17,7 @@ function Feedback() {
     useEffect(() => {
         const { name, repo, appType } = request;
 
-        runLoadingText();
+        runLoadingText(setLoadingText);
         runTests(name, repo, appType)
             .then((res) => {
                 if (res.isError) {
@@ -28,6 +29,8 @@ function Feedback() {
             })
             .catch((err) => {
                 console.log(err, "working???");
+                setIsError(true);
+                setIsLoading(false);
             });
 
         return () => {
@@ -35,29 +38,29 @@ function Feedback() {
         };
     }, []);
 
-    const runLoadingText = () => {
-        const messages = [
-            "cloning repo...",
-            "cloning repo...",
-            "setting up dbs...",
-            "installing dependencies...",
-            "installing dependencies...",
-            "running tests...",
-            "running tests...",
-            "running more tests...",
-            "writing feedback file...",
-            "still writing the file...",
-            "Almost done...",
-            "still going...",
-            "still, still going",
-            "still, still, still going",
-        ];
-        let i = -1;
-        setInterval(() => {
-            i++;
-            setLoadingText(messages[i]);
-        }, 2200);
-    };
+    // const runLoadingText = () => {
+    //     const messages = [
+    //         "cloning repo...",
+    //         "cloning repo...",
+    //         "setting up dbs...",
+    //         "installing dependencies...",
+    //         "installing dependencies...",
+    //         "running tests...",
+    //         "running tests...",
+    //         "running more tests...",
+    //         "writing feedback file...",
+    //         "still writing the file...",
+    //         "Almost done...",
+    //         "still going...",
+    //         "still, still going",
+    //         "still, still, still going",
+    //     ];
+    //     let i = -1;
+    //     setInterval(() => {
+    //         i++;
+    //         setLoadingText(messages[i]);
+    //     }, 2200);
+    // };
 
     if (isLoading)
         return (
