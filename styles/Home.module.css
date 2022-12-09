@@ -60,8 +60,9 @@
     display: flex;
     flex-direction: column;
     gap: 2em;
-    margin-block: 2em;
+    margin-block: 5em;
     width: 40%;
+    max-width: 500px;
 }
 
 .form label {
@@ -69,6 +70,7 @@
     width: 110%;
     flex-direction: row;
     justify-content: space-between;
+    font-weight: bold;
 }
 .form label input {
     padding-inline: 2em;
