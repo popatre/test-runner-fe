@@ -27,7 +27,7 @@ function Feedback() {
                 setIsLoading(false);
             })
             .catch((err) => {
-                console.log("IN HERE *******", err);
+                console.log(err, "working???");
             });
 
         return () => {
@@ -37,9 +37,14 @@ function Feedback() {
 
     const runLoadingText = () => {
         const messages = [
+            "cloning repo...",
+            "cloning repo...",
             "setting up dbs...",
             "installing dependencies...",
+            "installing dependencies...",
             "running tests...",
+            "running tests...",
+            "running more tests...",
             "writing feedback file...",
             "still writing the file...",
             "Almost done...",

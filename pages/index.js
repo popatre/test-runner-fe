@@ -7,7 +7,7 @@ import { RequestContext } from "../context/RequestContext";
 export default function Home() {
     const { setRequest } = useContext(RequestContext);
     const router = useRouter();
-    const [input, setInput] = useState({ name: "", repo: "", appType: "" });
+    const [input, setInput] = useState({ name: "", repo: "", appType: "news" });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -59,7 +59,7 @@ export default function Home() {
                         App type:
                         {/* <input type="text" name="appType" /> */}
                         <select name="appType" onChange={handleChange}>
-                            <option disabled selected value>
+                            <option disabled value>
                                 {" "}
                                 -- select an app type --{" "}
                             </option>

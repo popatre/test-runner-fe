@@ -9,7 +9,7 @@ export default async function handler(req, res) {
         res.status(200).send({ feedback });
     } catch (error) {
         // Doesn't seem to end up in the catch with an error status
-        res.status(200).send({
+        res.status(400).send({
             status: 400,
             msg: "Bad request - please return to the previous page and try again",
             isError: true,
