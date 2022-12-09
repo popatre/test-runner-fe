@@ -74,6 +74,10 @@
     padding-inline: 2em;
     padding-block: 1em;
 }
+.form label textarea {
+    padding-inline: 2em;
+    padding-block: 1em;
+}
 
 /* .btn {
     padding: 1em 2em;
