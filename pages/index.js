@@ -68,13 +68,15 @@ export default function Home() {
                         </select>
                     </label>
                 </form>
-                <button
-                    disabled={!isFormComplete()}
-                    className={styles.btn}
-                    onClick={handleNav}
-                >
-                    Get Feedback
-                </button>
+                {isFormComplete() ? (
+                    <button
+                        disabled={!isFormComplete()}
+                        className={styles.button}
+                        onClick={handleNav}
+                    >
+                        Get Feedback
+                    </button>
+                ) : null}
             </main>
         </div>
     );
