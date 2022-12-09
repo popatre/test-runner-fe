@@ -1,7 +1,11 @@
 # BE Test Runner
 
-npm run dev -  start server
+-   `npm install`
+
+-   `npm run dev` to start the server
+
+-   Server starts on `localhost:3000`
 
 Note:
 
-db/connection.js must exist in cloned repo
+db/connection.js must exist/be named so, in cloned repo
