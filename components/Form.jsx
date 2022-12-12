@@ -5,7 +5,12 @@ import { useRouter } from "next/router";
 
 function Form() {
     const { setRequest } = useContext(RequestContext);
-    const [input, setInput] = useState({ name: "", repo: "", appType: "news" });
+    const [input, setInput] = useState({
+        name: "",
+        repo: "",
+        appType: "news",
+        branch: "main",
+    });
     const router = useRouter();
 
     const handleChange = (e) => {
@@ -16,7 +21,7 @@ function Form() {
     };
 
     const isFormComplete = () => {
-        return input.name && input.repo && input.appType;
+        return input.name && input.repo && input.appType && input.branch;
     };
 
     const handleNav = (e) => {
@@ -43,6 +48,15 @@ function Form() {
                         type="text"
                         value={input.repo}
                         name="repo"
+                        onChange={handleChange}
+                    />
+                </label>
+                <label>
+                    Branch name:
+                    <input
+                        type="text"
+                        value={input.branch}
+                        name="branch"
                         onChange={handleChange}
                     />
                 </label>

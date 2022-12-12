@@ -15,10 +15,10 @@ async function sh(cmd) {
     });
 }
 
-async function runCommands(studentName, repoUrl, appType) {
+async function runCommands(studentName, repoUrl, appType, branch) {
     const working_dir = `${__dirname}/../../../../evaluations/${studentName}`;
 
-    const gitClone = `git clone ${repoUrl} ${working_dir}`;
+    const gitClone = `git clone -b ${branch} ${repoUrl} ${working_dir}`;
     const testRunner = `cp test-runner.js ${working_dir}`;
     const getEnv = `cp ${__dirname}/../../../../env/${appType}/.env.test ${working_dir}`;
     const setupDbs = `psql -f ${__dirname}/../../../../setup-db/${appType}/setup-test-db.sql`;

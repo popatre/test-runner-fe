@@ -15,10 +15,10 @@ function Feedback() {
     const [isError, setIsError] = useState(false);
 
     useEffect(() => {
-        const { name, repo, appType } = request;
+        const { name, repo, appType, branch } = request;
 
         runLoadingText(setLoadingText);
-        runTests(name, repo, appType)
+        runTests(name, repo, appType, branch)
             .then((res) => {
                 if (res.isError) {
                     setIsError(true);
