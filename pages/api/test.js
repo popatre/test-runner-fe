@@ -4,8 +4,8 @@ const { runCommands } = require("../../runCommands");
 
 export default async function handler(req, res) {
     try {
-        const { name, repo, type } = req.query;
-        const feedback = await runCommands(name, repo, type);
+        const { name, repo, type, branch } = req.query;
+        const feedback = await runCommands(name, repo, type, branch);
         res.status(200).send({ feedback });
     } catch (error) {
         console.log(error);
