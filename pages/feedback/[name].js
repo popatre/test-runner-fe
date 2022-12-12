@@ -50,7 +50,10 @@ function Feedback() {
             </div>
         );
 
-    if (isError) return <Errors message="Oh no - Something went wrong " />;
+    if (isError)
+        return (
+            <Errors message="Oh no - Something went wrong. Check that PSQL is running & the Evaluations folder is empty " />
+        );
     return (
         <div className={styles.container}>
             <ReactMarkdown>{feedback}</ReactMarkdown>

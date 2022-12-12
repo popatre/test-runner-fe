@@ -8,6 +8,7 @@ export default async function handler(req, res) {
         const feedback = await runCommands(name, repo, type);
         res.status(200).send({ feedback });
     } catch (error) {
+        console.log(error);
         // Doesn't seem to end up in the catch with an error status
         res.status(400).send({
             status: 400,

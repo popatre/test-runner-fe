@@ -35,20 +35,6 @@ async function runCommands(studentName, repoUrl, appType) {
     return feedbackFile;
 }
 
-/********** Split up functions to get around timeout ********/
-
-// async function cloneRepo() {
-//     console.log("cloning repo");
-//     const { stdout } = await sh(
-//         `${gitClone} && ${testRunner} && ${getEnv} && ${setupDbs}`
-//     );
-// }
-
-// async function npmIns() {
-//     console.log("npm installing");
-//     const { stdout } = await sh(`${cdIntoDir} && ${npmInstall}`);
-// }
-
 async function removeFolder() {
     if (fs.existsSync(`./evaluations`)) {
         return await sh(`rm -r ./evaluations`);
