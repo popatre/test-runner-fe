@@ -16,12 +16,12 @@ async function sh(cmd) {
 }
 
 async function runCommands(studentName, repoUrl, appType) {
-    const working_dir = `./evaluations/${studentName}`;
+    const working_dir = `${__dirname}/../../../../evaluations/${studentName}`;
 
     const gitClone = `git clone ${repoUrl} ${working_dir}`;
     const testRunner = `cp test-runner.js ${working_dir}`;
-    const getEnv = `cp ./env/${appType}/.env.test ${working_dir}`;
-    const setupDbs = `psql -f ./setup-db/${appType}/setup-test-db.sql`;
+    const getEnv = `cp ${__dirname}/../../../../env/${appType}/.env.test ${working_dir}`;
+    const setupDbs = `psql -f ${__dirname}/../../../../setup-db/${appType}/setup-test-db.sql`;
     const cdIntoDir = `cd ${working_dir}`;
     const npmInstall = `npm install`;
     const getMarkdown = `NODE_ENV=test app_type=${appType} node test-runner.js >> feedback.md`;
@@ -36,8 +36,8 @@ async function runCommands(studentName, repoUrl, appType) {
 }
 
 async function removeFolder() {
-    if (fs.existsSync(`./evaluations`)) {
-        return await sh(`rm -r ./evaluations`);
+    if (fs.existsSync(`${__dirname}/../../../../evaluations`)) {
+        return await sh(`rm -r ${__dirname}/../../../../evaluations`);
     } else {
         return;
     }
