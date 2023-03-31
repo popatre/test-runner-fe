@@ -1,11 +1,8 @@
 # BE Test Runner
 
--   `npm install`
-
--   `npm run dev` to start the server
-
--   Server starts on `localhost:3000`
-
-Note:
-
-db/connection.js must exist/be named so, in cloned repo
+1. clone this runner repo
+2. cd into it
+3. npm install
+4. npm run dev to start the server
+5. in your browser - go to http://localhost:3000
+6. click run
